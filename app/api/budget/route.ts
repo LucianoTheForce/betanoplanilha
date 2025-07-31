@@ -1,36 +1,36 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { promises as fs } from 'fs'
-import path from 'path'
-
-const budgetFilePath = path.join(process.cwd(), 'data', 'budget-editable.json')
+import { redisBudgetOps } from '../../../lib/redis'
 
 // GET - Carregar dados do orçamento
 export async function GET() {
   try {
-    // Tenta ler o arquivo editado
-    try {
-      const data = await fs.readFile(budgetFilePath, 'utf8')
-      return NextResponse.json(JSON.parse(data))
-    } catch (error) {
-      // Se não existe, cria a partir dos dados originais
-      const originalDataPath = path.join(process.cwd(), 'lib', 'budget-data.ts')
-      const originalData = await import('../../../lib/budget-data')
-      
-      // Cria diretório se não existir
-      const dataDir = path.dirname(budgetFilePath)
-      try {
-        await fs.access(dataDir)
-      } catch {
-        await fs.mkdir(dataDir, { recursive: true })
-      }
-      
-      // Salva dados originais como base
-      await fs.writeFile(budgetFilePath, JSON.stringify(originalData.budgetData, null, 2))
-      return NextResponse.json(originalData.budgetData)
+    // Primeiro tenta carregar do Redis
+    const redisData = await redisBudgetOps.getBudgetData()
+    
+    if (redisData) {
+      console.log('Dados carregados do Redis com sucesso')
+      return NextResponse.json(redisData)
     }
+    
+    // Se não existir no Redis, carrega dados originais e salva no Redis
+    console.log('Dados não encontrados no Redis, carregando dados originais...')
+    const originalData = await import('../../../lib/budget-data')
+    
+    // Salva no Redis para próximas consultas
+    const saveSuccess = await redisBudgetOps.setBudgetData(originalData.budgetData)
+    if (saveSuccess) {
+      console.log('Dados originais salvos no Redis com sucesso')
+    } else {
+      console.log('Aviso: Falha ao salvar dados originais no Redis')
+    }
+    
+    return NextResponse.json(originalData.budgetData)
   } catch (error) {
     console.error('Erro ao carregar dados do orçamento:', error)
-    return NextResponse.json({ error: 'Erro ao carregar dados' }, { status: 500 })
+    return NextResponse.json({ 
+      error: 'Erro ao carregar dados do orçamento',
+      details: error instanceof Error ? error.message : String(error)
+    }, { status: 500 })
   }
 }
 
@@ -39,29 +39,23 @@ export async function POST(request: NextRequest) {
   try {
     const budgetData = await request.json()
     
-    // Em produção (Vercel), o sistema de arquivos é read-only
-    // Então só simulamos o salvamento
-    if (process.env.NODE_ENV === 'production' || process.env.VERCEL) {
-      console.log('Dados recebidos para salvamento (produção):', JSON.stringify(budgetData, null, 2))
+    // Salva no Redis
+    const saveSuccess = await redisBudgetOps.setBudgetData(budgetData)
+    
+    if (saveSuccess) {
+      console.log('Dados salvos no Redis com sucesso')
       return NextResponse.json({
         success: true,
-        message: 'Dados processados com sucesso! (Modo somente leitura em produção)',
-        production: true
+        message: 'Dados salvos com sucesso no Redis!',
+        redis: true
       })
+    } else {
+      console.error('Falha ao salvar dados no Redis')
+      return NextResponse.json({
+        success: false,
+        error: 'Falha ao salvar dados no Redis'
+      }, { status: 500 })
     }
-    
-    // Em desenvolvimento, tenta salvar normalmente
-    const dataDir = path.dirname(budgetFilePath)
-    try {
-      await fs.access(dataDir)
-    } catch {
-      await fs.mkdir(dataDir, { recursive: true })
-    }
-    
-    // Salva os dados
-    await fs.writeFile(budgetFilePath, JSON.stringify(budgetData, null, 2))
-    
-    return NextResponse.json({ success: true, message: 'Dados salvos com sucesso!' })
   } catch (error) {
     console.error('Erro ao salvar dados do orçamento:', error)
     return NextResponse.json({
@@ -76,19 +70,28 @@ export async function PUT() {
   try {
     const originalData = await import('../../../lib/budget-data')
     
-    // Cria diretório se não existir
-    const dataDir = path.dirname(budgetFilePath)
-    try {
-      await fs.access(dataDir)
-    } catch {
-      await fs.mkdir(dataDir, { recursive: true })
+    // Reseta no Redis
+    const resetSuccess = await redisBudgetOps.resetBudgetData(originalData.budgetData)
+    
+    if (resetSuccess) {
+      console.log('Dados resetados no Redis com sucesso')
+      return NextResponse.json({ 
+        success: true, 
+        message: 'Dados resetados para o original no Redis!',
+        redis: true
+      })
+    } else {
+      console.error('Falha ao resetar dados no Redis')
+      return NextResponse.json({
+        success: false,
+        error: 'Falha ao resetar dados no Redis'
+      }, { status: 500 })
     }
-    
-    await fs.writeFile(budgetFilePath, JSON.stringify(originalData.budgetData, null, 2))
-    
-    return NextResponse.json({ success: true, message: 'Dados resetados para o original!' })
   } catch (error) {
     console.error('Erro ao resetar dados:', error)
-    return NextResponse.json({ error: 'Erro ao resetar dados' }, { status: 500 })
+    return NextResponse.json({ 
+      error: 'Erro ao resetar dados',
+      details: error instanceof Error ? error.message : String(error)
+    }, { status: 500 })
   }
 }

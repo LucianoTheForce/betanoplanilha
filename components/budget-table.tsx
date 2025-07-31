@@ -1,21 +1,104 @@
 "use client"
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { budgetData as defaultBudgetData } from '@/lib/budget-data'
-import { ChevronDown, ChevronRight, Edit3, Eye, Save, RefreshCw, AlertCircle } from 'lucide-react'
+import { ChevronDown, ChevronRight, Edit3, Eye, Save, RefreshCw, AlertCircle, Lock } from 'lucide-react'
+
+interface BudgetItem {
+  id: string
+  description: string
+  detailedDescription: string
+  status: boolean
+  quantity: number
+  days: number
+  frequency: number
+  unitPrice: number
+  supplier: string
+  invoice: string
+  billingType: string
+  notes?: string
+}
+
+interface BudgetCategory {
+  id: string
+  name: string
+  description: string
+  items: BudgetItem[]
+}
+
+interface BudgetData {
+  title: string
+  description: string
+  categories: BudgetCategory[]
+  totals: {
+    direto: number
+    faturamentoDireto: number
+    equipe: number
+    geral: number
+  }
+  summary: {
+    totalItems: number
+    totalCategories: number
+    activeItems: number
+    currency: string
+    lastUpdated: string
+  }
+}
 
 export function BudgetTable() {
-  const [editMode, setEditMode] = useState(true) // Começa em modo de edição
+  const [editMode, setEditMode] = useState(false) // Começa em modo cliente (somente leitura)
   const [expandedItems, setExpandedItems] = useState<string[]>([])
-  const [editableData, setEditableData] = useState(defaultBudgetData)
+  const [editableData, setEditableData] = useState<BudgetData>(defaultBudgetData)
   const [saving, setSaving] = useState(false)
   const [loading, setLoading] = useState(true)
   const [saveStatus, setSaveStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [showPasswordModal, setShowPasswordModal] = useState(false)
+  const [password, setPassword] = useState('')
+  const [passwordError, setPasswordError] = useState('')
 
   // Carregar dados ao montar o componente
   useEffect(() => {
     loadBudgetData()
   }, [])
+
+  // Adicionar listener para Ctrl+E
+  const handleKeyDown = useCallback((event: KeyboardEvent) => {
+    if (event.ctrlKey && event.key === 'e') {
+      event.preventDefault()
+      if (!editMode) {
+        setShowPasswordModal(true)
+      }
+    }
+  }, [editMode])
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [handleKeyDown])
+
+  const handlePasswordSubmit = () => {
+    if (password === '7299') {
+      setEditMode(true)
+      setShowPasswordModal(false)
+      setPassword('')
+      setPasswordError('')
+    } else {
+      setPasswordError('Senha incorreta. Tente novamente.')
+      setPassword('')
+    }
+  }
+
+  const handlePasswordKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handlePasswordSubmit()
+    }
+  }
+
+  const exitEditMode = () => {
+    setEditMode(false)
+  }
 
   const loadBudgetData = async () => {
     try {
@@ -98,7 +181,7 @@ export function BudgetTable() {
     }).format(value)
   }
 
-  const calculateItemTotal = (item: any) => {
+  const calculateItemTotal = (item: BudgetItem) => {
     return item.quantity * item.days * item.frequency * item.unitPrice
   }
 
@@ -110,7 +193,7 @@ export function BudgetTable() {
     )
   }
 
-  const updateItem = (categoryId: string, itemId: string, field: string, value: any) => {
+  const updateItem = (categoryId: string, itemId: string, field: keyof BudgetItem, value: string | number | boolean) => {
     setEditableData(prevData => ({
       ...prevData,
       categories: prevData.categories.map(category => {
@@ -130,7 +213,7 @@ export function BudgetTable() {
     }))
   }
 
-  const updateCategory = (categoryId: string, field: string, value: any) => {
+  const updateCategory = (categoryId: string, field: keyof BudgetCategory, value: string) => {
     setEditableData(prevData => ({
       ...prevData,
       categories: prevData.categories.map(category => {
@@ -179,10 +262,50 @@ export function BudgetTable() {
 
   return (
     <div className="w-full">
+      {/* Password Modal */}
+      {showPasswordModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg p-6 w-96">
+            <h3 className="text-lg font-bold text-white mb-4">Acesso ao Modo de Edição</h3>
+            <p className="text-sm text-white/60 mb-4">Digite a senha para acessar o modo de edição:</p>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              onKeyDown={handlePasswordKeyDown}
+              className="w-full bg-white/10 border border-white/20 rounded px-3 py-2 text-white placeholder-white/50 mb-4"
+              placeholder="Digite a senha"
+              autoFocus
+            />
+            {passwordError && (
+              <p className="text-red-400 text-sm mb-4">{passwordError}</p>
+            )}
+            <div className="flex gap-2 justify-end">
+              <button
+                onClick={() => {
+                  setShowPasswordModal(false)
+                  setPassword('')
+                  setPasswordError('')
+                }}
+                className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded text-white text-sm transition-colors"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={handlePasswordSubmit}
+                className="px-4 py-2 bg-blue-500/20 hover:bg-blue-500/30 rounded text-blue-400 text-sm transition-colors"
+              >
+                Confirmar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-center gap-4">
           <h3 className="text-xl font-bold text-white">
-            {editMode ? 'Modo de Edição' : 'Modo de Visualização'}
+            {editMode ? 'Modo de Edição' : 'Modo Cliente'}
           </h3>
           {saveStatus === 'success' && (
             <div className="text-green-400 text-sm flex items-center gap-1">
@@ -197,15 +320,20 @@ export function BudgetTable() {
           )}
         </div>
         <div className="flex gap-2">
-          <button
-            onClick={() => setEditMode(!editMode)}
-            className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-white text-sm flex items-center gap-2 transition-colors"
-          >
-            {editMode ? <Eye className="w-4 h-4" /> : <Edit3 className="w-4 h-4" />}
-            {editMode ? 'Visualizar' : 'Editar'}
-          </button>
-          {editMode && (
+          {!editMode ? (
+            <div className="flex items-center gap-2 text-sm text-white/60">
+              <Lock className="w-4 h-4" />
+              <span>Pressione Ctrl+E para editar</span>
+            </div>
+          ) : (
             <>
+              <button
+                onClick={exitEditMode}
+                className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-white text-sm flex items-center gap-2 transition-colors"
+              >
+                <Eye className="w-4 h-4" />
+                Modo Cliente
+              </button>
               <button
                 onClick={saveBudgetData}
                 disabled={saving}
@@ -235,6 +363,7 @@ export function BudgetTable() {
                 <th className="text-left py-4 px-4 text-sm font-medium text-white/60 uppercase tracking-wider w-16"></th>
                 <th className="text-left py-4 px-4 text-sm font-medium text-white/60 uppercase tracking-wider">Item</th>
                 <th className="text-left py-4 px-4 text-sm font-medium text-white/60 uppercase tracking-wider">Descrição</th>
+                <th className="text-left py-4 px-4 text-sm font-medium text-white/60 uppercase tracking-wider">Observações</th>
                 <th className="text-center py-4 px-4 text-sm font-medium text-white/60 uppercase tracking-wider">Qtd</th>
                 <th className="text-center py-4 px-4 text-sm font-medium text-white/60 uppercase tracking-wider">Dias</th>
                 <th className="text-center py-4 px-4 text-sm font-medium text-white/60 uppercase tracking-wider">Freq</th>
@@ -247,7 +376,7 @@ export function BudgetTable() {
               {editableData.categories.map((category) => (
                 <React.Fragment key={category.id}>
                   <tr className="bg-white/5">
-                    <td colSpan={9} className="py-3 px-4">
+                    <td colSpan={10} className="py-3 px-4">
                       <div className="flex items-center gap-2">
                         {editMode ? (
                           <input
@@ -300,7 +429,32 @@ export function BudgetTable() {
                           ) : (
                             <div className="text-sm text-white">{item.description}</div>
                           )}
-                          <div className="text-xs text-white/60 mt-1">{item.supplier}</div>
+                          <div className="text-xs text-white/60 mt-1">
+                            {editMode ? (
+                              <input
+                                type="text"
+                                value={item.supplier}
+                                onChange={(e) => updateItem(category.id, item.id, 'supplier', e.target.value)}
+                                className="w-full bg-white/10 border border-white/20 rounded px-1 text-xs text-white/80"
+                                placeholder="Fornecedor"
+                              />
+                            ) : (
+                              item.supplier
+                            )}
+                          </div>
+                        </td>
+                        <td className="py-3 px-4">
+                          {editMode ? (
+                            <textarea
+                              value={item.notes || ''}
+                              onChange={(e) => updateItem(category.id, item.id, 'notes', e.target.value)}
+                              className="w-full bg-white/10 border border-white/20 rounded px-2 py-1 text-sm text-white resize-none"
+                              placeholder="Observações adicionais"
+                              rows={2}
+                            />
+                          ) : (
+                            <div className="text-sm text-white/80">{item.notes || '-'}</div>
+                          )}
                         </td>
                         <td className="py-3 px-4 text-center">
                           {editMode ? (
@@ -365,7 +519,7 @@ export function BudgetTable() {
                       </tr>
                       {expandedItems.includes(item.id) && (
                         <tr className="bg-black/30">
-                          <td colSpan={9} className="p-4">
+                          <td colSpan={10} className="p-4">
                             <div className="space-y-2">
                               <div className="text-sm font-medium text-white mb-2">Descrição Detalhada:</div>
                               {editMode ? (
@@ -404,7 +558,7 @@ export function BudgetTable() {
                     </React.Fragment>
                   ))}
                   <tr className="bg-white/10">
-                    <td colSpan={7} className="py-3 px-4 text-right font-medium text-white">
+                    <td colSpan={8} className="py-3 px-4 text-right font-medium text-white">
                       Subtotal {category.name}:
                     </td>
                     <td className="py-3 px-4 text-right font-bold text-white">
@@ -417,7 +571,7 @@ export function BudgetTable() {
             </tbody>
             <tfoot>
               <tr className="border-t-2 border-white/20">
-                <td colSpan={9} className="py-6">
+                <td colSpan={10} className="py-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-lg mx-auto">
                     <div className="bg-purple-500/10 p-4 rounded-lg border border-purple-500/20">
                       <p className="text-sm text-purple-400 mb-1">Equipe</p>
@@ -444,7 +598,7 @@ export function BudgetTable() {
           <li>• Todos os valores incluem impostos e encargos aplicáveis</li>
           <li>• Proposta válida por 30 dias a partir da data de apresentação</li>
           {editMode && (
-            <li className="text-yellow-400">• Modo de edição ativo - Clique em "Visualizar" antes de enviar ao cliente</li>
+            <li className="text-yellow-400">• Modo de edição ativo - Clique em &quot;Modo Cliente&quot; antes de enviar ao cliente</li>
           )}
         </ul>
       </div>
