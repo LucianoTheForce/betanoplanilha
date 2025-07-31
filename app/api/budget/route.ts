@@ -39,7 +39,18 @@ export async function POST(request: NextRequest) {
   try {
     const budgetData = await request.json()
     
-    // Cria diretório se não existir
+    // Em produção (Vercel), o sistema de arquivos é read-only
+    // Então só simulamos o salvamento
+    if (process.env.NODE_ENV === 'production' || process.env.VERCEL) {
+      console.log('Dados recebidos para salvamento (produção):', JSON.stringify(budgetData, null, 2))
+      return NextResponse.json({
+        success: true,
+        message: 'Dados processados com sucesso! (Modo somente leitura em produção)',
+        production: true
+      })
+    }
+    
+    // Em desenvolvimento, tenta salvar normalmente
     const dataDir = path.dirname(budgetFilePath)
     try {
       await fs.access(dataDir)
@@ -53,7 +64,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: true, message: 'Dados salvos com sucesso!' })
   } catch (error) {
     console.error('Erro ao salvar dados do orçamento:', error)
-    return NextResponse.json({ error: 'Erro ao salvar dados' }, { status: 500 })
+    return NextResponse.json({
+      error: 'Erro ao salvar dados',
+      details: error instanceof Error ? error.message : String(error)
+    }, { status: 500 })
   }
 }
 
