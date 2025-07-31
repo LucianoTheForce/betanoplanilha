@@ -14,7 +14,7 @@ export async function GET() {
     } catch (error) {
       // Se não existe, cria a partir dos dados originais
       const originalDataPath = path.join(process.cwd(), 'lib', 'budget-data.ts')
-      const originalData = await import('../../lib/budget-data')
+      const originalData = await import('../../../lib/budget-data')
       
       // Cria diretório se não existir
       const dataDir = path.dirname(budgetFilePath)
@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
 // PUT - Reset para dados originais
 export async function PUT() {
   try {
-    const originalData = await import('../../lib/budget-data')
+    const originalData = await import('../../../lib/budget-data')
     
     // Cria diretório se não existir
     const dataDir = path.dirname(budgetFilePath)
