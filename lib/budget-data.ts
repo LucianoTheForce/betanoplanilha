@@ -1,0 +1,674 @@
+export const budgetData = {
+  "title": "Proposta Comercial: THE FORCE & BETANO",
+  "description": "Planilha de Orçamento Interativa - 16/10/2023",
+  "categories": [
+    {
+      "id": "1",
+      "name": "ESPAÇO E LOCAÇÃO",
+      "description": "Custos relacionados ao espaço físico na Estação Sé do Metrô e documentação legal",
+      "items": [
+        {
+          "id": "1.1",
+          "description": "Locação Espaço Estação Sé",
+          "detailedDescription": "Locação do espaço na Estação Sé do Metrô para instalação do estande de ativação da Betano, com fluxo diário de 338.000 passageiros durante 40 dias úteis de operação.",
+          "status": true,
+          "quantity": 1,
+          "days": 40,
+          "frequency": 1,
+          "unitPrice": 15000,
+          "supplier": "Metrô SP",
+          "invoice": "",
+          "billingType": "The Force (Bi Tributado)"
+        },
+        {
+          "id": "1.2",
+          "description": "Registro SPA/MF",
+          "detailedDescription": "Registro junto à Secretaria de Prêmios e Apostas do Ministério da Fazenda para conformidade regulatória da ativação com sorteios e distribuição de prêmios.",
+          "status": true,
+          "quantity": 1,
+          "days": 1,
+          "frequency": 1,
+          "unitPrice": 8500,
+          "supplier": "Consultoria Jurídica",
+          "invoice": "",
+          "billingType": "The Force (Bi Tributado)"
+        },
+        {
+          "id": "1.3",
+          "description": "Alvarás SMUL",
+          "detailedDescription": "Obtenção de alvarás junto à Secretaria Municipal de Urbanismo e Licenciamento para operação comercial no espaço público do metrô.",
+          "status": true,
+          "quantity": 1,
+          "days": 1,
+          "frequency": 1,
+          "unitPrice": 3200,
+          "supplier": "Despachante",
+          "invoice": "",
+          "billingType": "The Force (Bi Tributado)"
+        },
+        {
+          "id": "1.4",
+          "description": "Seguro Responsabilidade Civil",
+          "detailedDescription": "Apólice de seguro cobrindo responsabilidade civil, danos a equipamentos e acidentes durante a operação da ativação no ambiente do metrô.",
+          "status": true,
+          "quantity": 1,
+          "days": 40,
+          "frequency": 1,
+          "unitPrice": 12000,
+          "supplier": "Seguradora",
+          "invoice": "",
+          "billingType": "The Force (Bi Tributado)"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "SISTEMA DE IMPACTO VISUAL",
+      "description": "Estande LED com iluminação dinâmica e design arquitetônico que transforma o espaço do metrô",
+      "items": [
+        {
+          "id": "2.1",
+          "description": "Roleta Gigante LED",
+          "detailedDescription": "Roleta gigante com painéis LED de alta resolução, visível de toda a estação, com sistema de iluminação dinâmica e animações customizadas da marca Betano.",
+          "status": true,
+          "quantity": 1,
+          "days": 40,
+          "frequency": 1,
+          "unitPrice": 185000,
+          "supplier": "LED Solutions",
+          "invoice": "",
+          "billingType": "Direto ao Cliente"
+        },
+        {
+          "id": "2.2",
+          "description": "Estande Arquitetônico",
+          "detailedDescription": "Estrutura arquitetônica customizada em alumínio e acrílico, com design que transforma o espaço do metrô, incluindo área de cadastro, distribuição de prêmios e operação.",
+          "status": true,
+          "quantity": 1,
+          "days": 40,
+          "frequency": 1,
+          "unitPrice": 95000,
+          "supplier": "Cenografia Pro",
+          "invoice": "",
+          "billingType": "Direto ao Cliente"
+        },
+        {
+          "id": "2.3",
+          "description": "Sistema de Iluminação LED",
+          "detailedDescription": "Displays LED contínuos operando 6 horas diárias, com sistema de controle DMX, iluminação ambiente e efeitos especiais sincronizados com a experiência da roleta.",
+          "status": true,
+          "quantity": 1,
+          "days": 40,
+          "frequency": 6,
+          "unitPrice": 8500,
+          "supplier": "LED Solutions",
+          "invoice": "",
+          "billingType": "Direto ao Cliente"
+        },
+        {
+          "id": "2.4",
+          "description": "Integração JCDecaux",
+          "detailedDescription": "Integração com painel central JCDecaux para exibição da roleta gigante por 1 hora diária, maximizando o alcance visual na estação.",
+          "status": true,
+          "quantity": 1,
+          "days": 40,
+          "frequency": 1,
+          "unitPrice": 25000,
+          "supplier": "JCDecaux",
+          "invoice": "",
+          "billingType": "Direto ao Cliente"
+        },
+        {
+          "id": "2.5",
+          "description": "Sistema de Energia",
+          "detailedDescription": "Infraestrutura elétrica completa para manter energia durante toda operação, incluindo nobreaks, quadros de distribuição e cabeamento certificado.",
+          "status": true,
+          "quantity": 1,
+          "days": 40,
+          "frequency": 1,
+          "unitPrice": 18000,
+          "supplier": "Elétrica Técnica",
+          "invoice": "",
+          "billingType": "The Force (Bi Tributado)"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "TECNOLOGIA DE CADASTRO",
+      "description": "Quatro totens touchscreen de 55 polegadas para registro simultâneo de usuários",
+      "items": [
+        {
+          "id": "3.1",
+          "description": "Totens Touchscreen 55\"",
+          "detailedDescription": "Quatro totens touchscreen de 55 polegadas para registro simultâneo de usuários, com sistema operacional customizado, geração de códigos únicos e impressão de tickets.",
+          "status": true,
+          "quantity": 4,
+          "days": 40,
+          "frequency": 1,
+          "unitPrice": 15000,
+          "supplier": "Tech Display",
+          "invoice": "",
+          "billingType": "The Force (Bi Tributado)"
+        },
+        {
+          "id": "3.2",
+          "description": "Sistema de Cadastro",
+          "detailedDescription": "Software customizado para cadastro de usuários com integração QR/WhatsApp, sistema offline para operação contínua, verificação de participantes em tempo real e limite de 1 participação por CPF diária.",
+          "status": true,
+          "quantity": 1,
+          "days": 40,
+          "frequency": 1,
+          "unitPrice": 45000,
+          "supplier": "Dev Solutions",
+          "invoice": "",
+          "billingType": "The Force (Bi Tributado)"
+        },
+        {
+          "id": "3.3",
+          "description": "Impressoras de Tickets",
+          "detailedDescription": "Sistema de impressão térmica integrado aos totens para emissão de tickets com códigos únicos, QR codes e informações da participação.",
+          "status": true,
+          "quantity": 4,
+          "days": 40,
+          "frequency": 1,
+          "unitPrice": 3500,
+          "supplier": "Print Tech",
+          "invoice": "",
+          "billingType": "The Force (Bi Tributado)"
+        },
+        {
+          "id": "3.4",
+          "description": "Conectividade e Rede",
+          "detailedDescription": "Infraestrutura de rede para conectividade dos totens, incluindo roteadores, switches, cabeamento e backup de internet via 4G para operação contínua.",
+          "status": true,
+          "quantity": 1,
+          "days": 40,
+          "frequency": 1,
+          "unitPrice": 8000,
+          "supplier": "Network Pro",
+          "invoice": "",
+          "billingType": "The Force (Bi Tributado)"
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "EXPERIÊNCIA DE JOGO INTERATIVA",
+      "description": "Vídeos de animação da roleta de 30 segundos com mecânica realista",
+      "items": [
+        {
+          "id": "4.1",
+          "description": "Produção de Vídeos da Roleta",
+          "detailedDescription": "Produção de 504 vídeos únicos de 30 segundos (72 por dia x 7 dias) com animação realista da bolinha branca girando, física realista e branding Betano integrado.",
+          "status": true,
+          "quantity": 504,
+          "days": 1,
+          "frequency": 1,
+          "unitPrice": 450,
+          "supplier": "Motion Graphics Studio",
+          "invoice": "",
+          "billingType": "Direto ao Cliente"
+        },
+        {
+          "id": "4.2",
+          "description": "Sistema de Reprodução",
+          "detailedDescription": "Media server profissional para reprodução dos vídeos da roleta com ciclos operacionais completos de 5 minutos, cronômetros integrados e sincronização perfeita.",
+          "status": true,
+          "quantity": 1,
+          "days": 40,
+          "frequency": 1,
+          "unitPrice": 25000,
+          "supplier": "Media Tech",
+          "invoice": "",
+          "billingType": "Direto ao Cliente"
+        },
+        {
+          "id": "4.3",
+          "description": "Conteúdo Promocional",
+          "detailedDescription": "Vídeos promocionais da Betano para período de cadastro (2min), cronômetro regressivo (2min 30s), conteúdo ambiente, depoimentos e logos animados.",
+          "status": true,
+          "quantity": 1,
+          "days": 1,
+          "frequency": 1,
+          "unitPrice": 35000,
+          "supplier": "Motion Graphics Studio",
+          "invoice": "",
+          "billingType": "Direto ao Cliente"
+        },
+        {
+          "id": "4.4",
+          "description": "Sistema de Áudio",
+          "detailedDescription": "Sistema de som ambiente com trilha sonora customizada, efeitos sonoros da roleta, anúncios ao vivo e comentários durante a experiência de jogo.",
+          "status": true,
+          "quantity": 1,
+          "days": 40,
+          "frequency": 6,
+          "unitPrice": 1200,
+          "supplier": "Audio Pro",
+          "invoice": "",
+          "billingType": "Direto ao Cliente"
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "SISTEMA DE DISTRIBUIÇÃO DE PRÊMIOS",
+      "description": "Balcão de cumprimento imediato de recompensas com inventário abrangente",
+      "items": [
+        {
+          "id": "5.1",
+          "description": "Fones Bluetooth",
+          "detailedDescription": "Fones de ouvido Bluetooth personalizados com logo Betano, distribuídos para participantes que acertarem números específicos na roleta.",
+          "status": true,
+          "quantity": 2880,
+          "days": 1,
+          "frequency": 1,
+          "unitPrice": 45,
+          "supplier": "Brindes Tech",
+          "invoice": "",
+          "billingType": "Direto ao Cliente"
+        },
+        {
+          "id": "5.2",
+          "description": "Copos Betano",
+          "detailedDescription": "Copos térmicos personalizados com cores da Betano, distribuídos para participantes que acertarem a cor na roleta (vermelho/preto).",
+          "status": true,
+          "quantity": 5760,
+          "days": 1,
+          "frequency": 1,
+          "unitPrice": 12,
+          "supplier": "Brindes Personalizados",
+          "invoice": "",
+          "billingType": "Direto ao Cliente"
+        },
+        {
+          "id": "5.3",
+          "description": "Cordões de Celular",
+          "detailedDescription": "Cordões para celular com design exclusivo Betano, distribuídos para participantes que acertarem par/ímpar na roleta.",
+          "status": true,
+          "quantity": 5760,
+          "days": 1,
+          "frequency": 1,
+          "unitPrice": 8,
+          "supplier": "Brindes Personalizados",
+          "invoice": "",
+          "billingType": "Direto ao Cliente"
+        },
+        {
+          "id": "5.4",
+          "description": "Chaveiros Exclusivos",
+          "detailedDescription": "Chaveiros metálicos com design exclusivo da ativação, distribuídos como prêmio de consolação garantindo que 100% dos participantes recebam prêmios.",
+          "status": true,
+          "quantity": 8640,
+          "days": 1,
+          "frequency": 1,
+          "unitPrice": 5,
+          "supplier": "Brindes Personalizados",
+          "invoice": "",
+          "billingType": "Direto ao Cliente"
+        },
+        {
+          "id": "5.5",
+          "description": "Balcão de Distribuição",
+          "detailedDescription": "Balcão customizado para distribuição imediata de prêmios, com sistema de organização por tipo de prêmio e controle de estoque em tempo real.",
+          "status": true,
+          "quantity": 1,
+          "days": 40,
+          "frequency": 1,
+          "unitPrice": 8500,
+          "supplier": "Móveis Comerciais",
+          "invoice": "",
+          "billingType": "Direto ao Cliente"
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "OPERAÇÃO DE EQUIPE PROFISSIONAL",
+      "description": "Solução completa de pessoal para gestão da jornada do participante",
+      "items": [
+        {
+          "id": "6.1",
+          "description": "Coordenador Geral",
+          "detailedDescription": "Profissional sênior responsável pela coordenação geral da operação, gestão da equipe de 11 funcionários, controle de performance e interface com cliente durante 6 horas diárias.",
+          "status": true,
+          "quantity": 1,
+          "days": 40,
+          "frequency": 6,
+          "unitPrice": 120,
+          "supplier": "RH Eventos",
+          "invoice": "",
+          "billingType": "Equipe"
+        },
+        {
+          "id": "6.2",
+          "description": "Promotores Volantes",
+          "detailedDescription": "Dois promotores equipados com tablets para abordagem ativa dos passageiros, apresentação da ativação e direcionamento para os totens de cadastro.",
+          "status": true,
+          "quantity": 2,
+          "days": 40,
+          "frequency": 6,
+          "unitPrice": 80,
+          "supplier": "RH Eventos",
+          "invoice": "",
+          "billingType": "Equipe"
+        },
+        {
+          "id": "6.3",
+          "description": "Operadores de Totem",
+          "detailedDescription": "Quatro operadores especializados, um para cada totem touchscreen, responsáveis por auxiliar no cadastro, gerenciar filas e garantir operação contínua dos equipamentos.",
+          "status": true,
+          "quantity": 4,
+          "days": 40,
+          "frequency": 6,
+          "unitPrice": 70,
+          "supplier": "RH Eventos",
+          "invoice": "",
+          "billingType": "Equipe"
+        },
+        {
+          "id": "6.4",
+          "description": "Atendentes Distribuição",
+          "detailedDescription": "Dois atendentes especializados na distribuição de prêmios, verificação de tickets, controle de estoque e celebração com os ganhadores.",
+          "status": true,
+          "quantity": 2,
+          "days": 40,
+          "frequency": 6,
+          "unitPrice": 65,
+          "supplier": "RH Eventos",
+          "invoice": "",
+          "billingType": "Equipe"
+        },
+        {
+          "id": "6.5",
+          "description": "Auxiliar de Limpeza",
+          "detailedDescription": "Profissional dedicado à manutenção da limpeza do estande, sanitização contínua dos equipamentos e organização do espaço durante toda operação.",
+          "status": true,
+          "quantity": 1,
+          "days": 40,
+          "frequency": 6,
+          "unitPrice": 45,
+          "supplier": "RH Eventos",
+          "invoice": "",
+          "billingType": "Equipe"
+        },
+        {
+          "id": "6.6",
+          "description": "Bombeiro Civil",
+          "detailedDescription": "Bombeiro civil certificado para garantir segurança da operação, controle de fluxo de pessoas e atendimento a emergências conforme exigências do metrô.",
+          "status": true,
+          "quantity": 1,
+          "days": 40,
+          "frequency": 6,
+          "unitPrice": 90,
+          "supplier": "Segurança Especializada",
+          "invoice": "",
+          "billingType": "Equipe"
+        },
+        {
+          "id": "6.7",
+          "description": "Tablets para Promotores",
+          "detailedDescription": "Tablets com aplicativo customizado para os promotores volantes, incluindo informações da ativação, cadastro pré-qualificado e métricas em tempo real.",
+          "status": true,
+          "quantity": 2,
+          "days": 40,
+          "frequency": 1,
+          "unitPrice": 1200,
+          "supplier": "Tech Rental",
+          "invoice": "",
+          "billingType": "Equipe"
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "name": "COMPLIANCE E LGPD",
+      "description": "Conformidade regulatória completa para operação de risco legal zero",
+      "items": [
+        {
+          "id": "7.1",
+          "description": "Consultoria LGPD",
+          "detailedDescription": "Consultoria especializada para adequação à Lei Geral de Proteção de Dados, incluindo termos de uso, política de privacidade e procedimentos de coleta de dados.",
+          "status": true,
+          "quantity": 1,
+          "days": 1,
+          "frequency": 1,
+          "unitPrice": 15000,
+          "supplier": "Consultoria Jurídica",
+          "invoice": "",
+          "billingType": "The Force (Bi Tributado)"
+        },
+        {
+          "id": "7.2",
+          "description": "Sistema de Verificação de Idade",
+          "detailedDescription": "Sistema integrado aos totens para verificação automática de idade (18+) através de validação de CPF e documento de identidade.",
+          "status": true,
+          "quantity": 1,
+          "days": 40,
+          "frequency": 1,
+          "unitPrice": 8000,
+          "supplier": "Dev Solutions",
+          "invoice": "",
+          "billingType": "The Force (Bi Tributado)"
+        },
+        {
+          "id": "7.3",
+          "description": "Controle de Participação",
+          "detailedDescription": "Sistema de controle que garante limite de 1 participação por CPF diária, com banco de dados integrado e verificação em tempo real.",
+          "status": true,
+          "quantity": 1,
+          "days": 40,
+          "frequency": 1,
+          "unitPrice": 5000,
+          "supplier": "Dev Solutions",
+          "invoice": "",
+          "billingType": "The Force (Bi Tributado)"
+        },
+        {
+          "id": "7.4",
+          "description": "Documentação Legal",
+          "detailedDescription": "Elaboração de toda documentação legal necessária, incluindo regulamento da promoção, termos de participação e contratos de adesão.",
+          "status": true,
+          "quantity": 1,
+          "days": 1,
+          "frequency": 1,
+          "unitPrice": 12000,
+          "supplier": "Consultoria Jurídica",
+          "invoice": "",
+          "billingType": "The Force (Bi Tributado)"
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "name": "PRODUÇÃO E SETUP",
+      "description": "Montagem, desmontagem e logística operacional da ativação",
+      "items": [
+        {
+          "id": "8.1",
+          "description": "Montagem do Estande",
+          "detailedDescription": "Montagem completa do estande arquitetônico, instalação da roleta gigante, totens, sistema de LED e toda infraestrutura durante o período de setup.",
+          "status": true,
+          "quantity": 1,
+          "days": 5,
+          "frequency": 1,
+          "unitPrice": 25000,
+          "supplier": "Montagem Pro",
+          "invoice": "",
+          "billingType": "The Force (Bi Tributado)"
+        },
+        {
+          "id": "8.2",
+          "description": "Desmontagem e Logística",
+          "detailedDescription": "Desmontagem completa da estrutura, retirada de equipamentos, limpeza do local e logística reversa de todos os materiais utilizados.",
+          "status": true,
+          "quantity": 1,
+          "days": 2,
+          "frequency": 1,
+          "unitPrice": 15000,
+          "supplier": "Montagem Pro",
+          "invoice": "",
+          "billingType": "The Force (Bi Tributado)"
+        },
+        {
+          "id": "8.3",
+          "description": "Transporte de Equipamentos",
+          "detailedDescription": "Transporte especializado de todos os equipamentos, estruturas e materiais, incluindo seguro de transporte e equipe especializada.",
+          "status": true,
+          "quantity": 1,
+          "days": 1,
+          "frequency": 1,
+          "unitPrice": 18000,
+          "supplier": "Logística Especializada",
+          "invoice": "",
+          "billingType": "The Force (Bi Tributado)"
+        },
+        {
+          "id": "8.4",
+          "description": "Testes e Comissionamento",
+          "detailedDescription": "Testes completos de todos os sistemas, comissionamento dos equipamentos, treinamento da equipe operacional e simulação da operação.",
+          "status": true,
+          "quantity": 1,
+          "days": 2,
+          "frequency": 1,
+          "unitPrice": 12000,
+          "supplier": "Suporte Técnico",
+          "invoice": "",
+          "billingType": "The Force (Bi Tributado)"
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "name": "SUPORTE TÉCNICO E MONITORAMENTO",
+      "description": "Suporte técnico 24/7 e monitoramento da operação durante toda ativação",
+      "items": [
+        {
+          "id": "9.1",
+          "description": "Suporte Técnico On-site",
+          "detailedDescription": "Técnico especializado presente durante toda operação diária para manutenção preventiva, resolução de problemas e garantia de funcionamento perfeito.",
+          "status": true,
+          "quantity": 1,
+          "days": 40,
+          "frequency": 6,
+          "unitPrice": 150,
+          "supplier": "Suporte Técnico",
+          "invoice": "",
+          "billingType": "The Force (Bi Tributado)"
+        },
+        {
+          "id": "9.2",
+          "description": "Monitoramento Remoto",
+          "detailedDescription": "Sistema de monitoramento remoto 24/7 de todos os equipamentos, com alertas automáticos, backup de dados e suporte técnico à distância.",
+          "status": true,
+          "quantity": 1,
+          "days": 40,
+          "frequency": 1,
+          "unitPrice": 800,
+          "supplier": "Tech Monitoring",
+          "invoice": "",
+          "billingType": "The Force (Bi Tributado)"
+        },
+        {
+          "id": "9.3",
+          "description": "Backup de Equipamentos",
+          "detailedDescription": "Equipamentos de backup para totens, sistema de som, impressoras e componentes críticos, garantindo operação contínua sem interrupções.",
+          "status": true,
+          "quantity": 1,
+          "days": 40,
+          "frequency": 1,
+          "unitPrice": 1500,
+          "supplier": "Tech Rental",
+          "invoice": "",
+          "billingType": "The Force (Bi Tributado)"
+        },
+        {
+          "id": "9.4",
+          "description": "Relatórios de Performance",
+          "detailedDescription": "Relatórios diários detalhados de performance, métricas de participação, análise de dados e otimizações operacionais em tempo real.",
+          "status": true,
+          "quantity": 40,
+          "days": 1,
+          "frequency": 1,
+          "unitPrice": 200,
+          "supplier": "Analytics Pro",
+          "invoice": "",
+          "billingType": "The Force (Bi Tributado)"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "name": "GESTÃO DE PROJETO",
+      "description": "Coordenação geral do projeto e entregáveis finais",
+      "items": [
+        {
+          "id": "10.1",
+          "description": "Diretor de Projeto",
+          "detailedDescription": "Diretor de projeto responsável pela coordenação geral, interface com cliente, gestão de cronograma e garantia de entrega de todos os objetivos da ativação.",
+          "status": true,
+          "quantity": 1,
+          "days": 40,
+          "frequency": 1,
+          "unitPrice": 800,
+          "supplier": "Gestão Interna",
+          "invoice": "",
+          "billingType": "Equipe"
+        },
+        {
+          "id": "10.2",
+          "description": "Coordenador de Operações",
+          "detailedDescription": "Coordenador especializado em operações de campo, responsável pela gestão diária da equipe, otimização de processos e resolução de questões operacionais.",
+          "status": true,
+          "quantity": 1,
+          "days": 40,
+          "frequency": 1,
+          "unitPrice": 600,
+          "supplier": "Gestão Interna",
+          "invoice": "",
+          "billingType": "Equipe"
+        },
+        {
+          "id": "10.3",
+          "description": "Documentação Final",
+          "detailedDescription": "Elaboração de documentação operacional completa, manuais de procedimento, relatórios finais de performance e entregáveis do projeto.",
+          "status": true,
+          "quantity": 1,
+          "days": 1,
+          "frequency": 1,
+          "unitPrice": 8000,
+          "supplier": "Documentação Pro",
+          "invoice": "",
+          "billingType": "Equipe"
+        },
+        {
+          "id": "10.4",
+          "description": "Treinamento de Equipe",
+          "detailedDescription": "Treinamento completo de toda equipe operacional, incluindo procedimentos, uso de equipamentos, atendimento ao público e protocolos de segurança.",
+          "status": true,
+          "quantity": 1,
+          "days": 2,
+          "frequency": 1,
+          "unitPrice": 5000,
+          "supplier": "Treinamento Pro",
+          "invoice": "",
+          "billingType": "Equipe"
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "direto": 16417800,
+    "biTributado": 7771700,
+    "equipe": 368000,
+    "geral": 24557500
+  },
+  "summary": {
+    "totalItems": 44,
+    "totalCategories": 10,
+    "activeItems": 44,
+    "currency": "BRL",
+    "lastUpdated": "2023-10-16"
+  }
+}
