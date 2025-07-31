@@ -1,51 +1,9 @@
 "use client"
 
-import React, { useState } from 'react'
-import { ChevronDown, ChevronRight, Info } from 'lucide-react'
+import React from 'react'
 import { budgetData } from '@/lib/budget-data'
-import { motion, AnimatePresence } from 'framer-motion'
-
-interface BudgetItem {
-  id: string
-  description: string
-  detailedDescription: string
-  status: boolean
-  quantity: number
-  days: number
-  frequency: number
-  unitPrice: number
-  supplier: string
-  invoice: string
-  billingType: string
-}
-
-interface BudgetCategory {
-  id: string
-  name: string
-  description: string
-  items: BudgetItem[]
-}
 
 export function BudgetTable() {
-  const [expandedCategories, setExpandedCategories] = useState<string[]>([])
-  const [expandedItems, setExpandedItems] = useState<string[]>([])
-
-  const toggleCategory = (categoryId: string) => {
-    setExpandedCategories(prev =>
-      prev.includes(categoryId)
-        ? prev.filter(id => id !== categoryId)
-        : [...prev, categoryId]
-    )
-  }
-
-  const toggleItem = (itemId: string) => {
-    setExpandedItems(prev =>
-      prev.includes(itemId)
-        ? prev.filter(id => id !== itemId)
-        : [...prev, itemId]
-    )
-  }
-
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('pt-BR', {
       style: 'currency',
@@ -53,149 +11,111 @@ export function BudgetTable() {
     }).format(value)
   }
 
-  const calculateItemTotal = (item: BudgetItem) => {
+  const calculateItemTotal = (item: any) => {
     return item.quantity * item.days * item.frequency * item.unitPrice
   }
 
-  const calculateCategoryTotal = (category: BudgetCategory) => {
-    return category.items.reduce((total, item) => {
-      if (item.status) {
-        return total + calculateItemTotal(item)
-      }
-      return total
-    }, 0)
-  }
-
   return (
-    <div className="w-full space-y-8">
-      <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold mb-2 text-white">{budgetData.title}</h2>
-        <p className="text-white/60">{budgetData.description}</p>
-      </div>
-
-      <div className="space-y-4">
-        {budgetData.categories.map((category) => (
-          <div key={category.id} className="border border-white/10 rounded-lg overflow-hidden">
-            <button
-              onClick={() => toggleCategory(category.id)}
-              className="w-full px-6 py-4 bg-white/5 hover:bg-white/10 transition-colors flex items-center justify-between"
-            >
-              <div className="flex items-center gap-3">
-                {expandedCategories.includes(category.id) ? (
-                  <ChevronDown className="w-5 h-5 text-white" />
-                ) : (
-                  <ChevronRight className="w-5 h-5 text-white" />
-                )}
-                <div className="text-left">
-                  <h3 className="font-semibold text-lg text-white">{category.name}</h3>
-                  <p className="text-sm text-white/60">{category.description}</p>
-                </div>
-              </div>
-              <div className="text-right">
-                <p className="font-bold text-lg text-white">{formatCurrency(calculateCategoryTotal(category))}</p>
-                <p className="text-sm text-white/60">{category.items.length} itens</p>
-              </div>
-            </button>
-
-            <AnimatePresence>
-              {expandedCategories.includes(category.id) && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="overflow-hidden"
-                >
-                  <div className="p-6 bg-black/50">
-                    <div className="space-y-3">
-                      {category.items.map((item) => (
-                        <div key={item.id} className="border border-white/10 rounded-lg p-4 bg-white/5">
-                          <div className="flex items-start justify-between">
-                            <div className="flex-1">
-                              <div className="flex items-center gap-2">
-                                <h4 className="font-medium text-white">{item.description}</h4>
-                                <button
-                                  onClick={() => toggleItem(item.id)}
-                                  className="text-white/60 hover:text-white transition-colors"
-                                >
-                                  <Info className="w-4 h-4" />
-                                </button>
-                              </div>
-                              
-                              <AnimatePresence>
-                                {expandedItems.includes(item.id) && (
-                                  <motion.div
-                                    initial={{ height: 0, opacity: 0 }}
-                                    animate={{ height: 'auto', opacity: 1 }}
-                                    exit={{ height: 0, opacity: 0 }}
-                                    transition={{ duration: 0.2 }}
-                                    className="mt-2 text-sm text-white/60"
-                                  >
-                                    {item.detailedDescription}
-                                  </motion.div>
-                                )}
-                              </AnimatePresence>
-
-                              <div className="mt-2 grid grid-cols-2 md:grid-cols-4 gap-2 text-sm text-white/80">
-                                <div>
-                                  <span className="text-white/60">Qtd:</span> {item.quantity}
-                                </div>
-                                <div>
-                                  <span className="text-white/60">Dias:</span> {item.days}
-                                </div>
-                                <div>
-                                  <span className="text-white/60">Frequência:</span> {item.frequency}x
-                                </div>
-                                <div>
-                                  <span className="text-white/60">Unitário:</span> {formatCurrency(item.unitPrice)}
-                                </div>
-                              </div>
-
-                              <div className="mt-2 flex flex-wrap gap-2 text-xs">
-                                <span className="px-2 py-1 bg-primary/10 rounded">
-                                  {item.supplier}
-                                </span>
-                                <span className="px-2 py-1 bg-secondary/10 rounded">
-                                  {item.billingType}
-                                </span>
-                              </div>
-                            </div>
-
-                            <div className="text-right ml-4">
-                              <p className="font-semibold text-white">{formatCurrency(calculateItemTotal(item))}</p>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
+    <div className="w-full overflow-x-auto">
+      <div className="min-w-[1200px]">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="border-b border-white/20">
+              <th className="text-left py-4 px-4 text-sm font-medium text-white/60 uppercase tracking-wider">Item</th>
+              <th className="text-left py-4 px-4 text-sm font-medium text-white/60 uppercase tracking-wider">Descrição</th>
+              <th className="text-center py-4 px-4 text-sm font-medium text-white/60 uppercase tracking-wider">Qtd</th>
+              <th className="text-center py-4 px-4 text-sm font-medium text-white/60 uppercase tracking-wider">Dias</th>
+              <th className="text-center py-4 px-4 text-sm font-medium text-white/60 uppercase tracking-wider">Freq</th>
+              <th className="text-right py-4 px-4 text-sm font-medium text-white/60 uppercase tracking-wider">Unitário</th>
+              <th className="text-right py-4 px-4 text-sm font-medium text-white/60 uppercase tracking-wider">Total</th>
+              <th className="text-left py-4 px-4 text-sm font-medium text-white/60 uppercase tracking-wider">Tipo</th>
+            </tr>
+          </thead>
+          <tbody>
+            {budgetData.categories.map((category) => (
+              <React.Fragment key={category.id}>
+                <tr className="bg-white/5">
+                  <td colSpan={8} className="py-3 px-4">
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg font-bold text-white">{category.name}</span>
+                      <span className="text-sm text-white/60">({category.description})</span>
                     </div>
+                  </td>
+                </tr>
+                {category.items.map((item) => (
+                  <tr key={item.id} className="border-b border-white/10 hover:bg-white/5 transition-colors">
+                    <td className="py-3 px-4 text-sm text-white/80">{item.id}</td>
+                    <td className="py-3 px-4">
+                      <div className="text-sm text-white">{item.description}</div>
+                      <div className="text-xs text-white/60 mt-1">{item.supplier}</div>
+                    </td>
+                    <td className="py-3 px-4 text-center text-sm text-white/80">{item.quantity}</td>
+                    <td className="py-3 px-4 text-center text-sm text-white/80">{item.days}</td>
+                    <td className="py-3 px-4 text-center text-sm text-white/80">{item.frequency}x</td>
+                    <td className="py-3 px-4 text-right text-sm text-white/80">{formatCurrency(item.unitPrice)}</td>
+                    <td className="py-3 px-4 text-right text-sm font-medium text-white">
+                      {formatCurrency(calculateItemTotal(item))}
+                    </td>
+                    <td className="py-3 px-4 text-sm">
+                      <span className={`
+                        px-2 py-1 rounded text-xs
+                        ${item.billingType === 'Direto ao Cliente' ? 'bg-green-500/20 text-green-400' : ''}
+                        ${item.billingType === 'The Force (Bi Tributado)' ? 'bg-blue-500/20 text-blue-400' : ''}
+                        ${item.billingType === 'Equipe' ? 'bg-purple-500/20 text-purple-400' : ''}
+                      `}>
+                        {item.billingType}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+                <tr className="bg-white/10">
+                  <td colSpan={6} className="py-3 px-4 text-right font-medium text-white">
+                    Subtotal {category.name}:
+                  </td>
+                  <td className="py-3 px-4 text-right font-bold text-white">
+                    {formatCurrency(category.items.reduce((total, item) => total + calculateItemTotal(item), 0))}
+                  </td>
+                  <td></td>
+                </tr>
+              </React.Fragment>
+            ))}
+          </tbody>
+          <tfoot>
+            <tr className="border-t-2 border-white/20">
+              <td colSpan={8} className="py-6">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                  <div className="bg-green-500/10 p-4 rounded-lg border border-green-500/20">
+                    <p className="text-sm text-green-400 mb-1">Direto ao Cliente</p>
+                    <p className="text-2xl font-bold text-white">{formatCurrency(budgetData.totals.direto / 100)}</p>
                   </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        ))}
+                  <div className="bg-blue-500/10 p-4 rounded-lg border border-blue-500/20">
+                    <p className="text-sm text-blue-400 mb-1">The Force (Bi Tributado)</p>
+                    <p className="text-2xl font-bold text-white">{formatCurrency(budgetData.totals.biTributado / 100)}</p>
+                  </div>
+                  <div className="bg-purple-500/10 p-4 rounded-lg border border-purple-500/20">
+                    <p className="text-sm text-purple-400 mb-1">Equipe</p>
+                    <p className="text-2xl font-bold text-white">{formatCurrency(budgetData.totals.equipe / 100)}</p>
+                  </div>
+                  <div className="bg-white/20 p-4 rounded-lg border border-white/30">
+                    <p className="text-sm text-white mb-1">TOTAL GERAL</p>
+                    <p className="text-2xl font-bold text-white">{formatCurrency(budgetData.totals.geral / 100)}</p>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
       </div>
 
-      <div className="mt-8 p-6 bg-white/10 rounded-lg border border-white/20">
-        <h3 className="text-xl font-bold mb-4 text-white">Resumo do Orçamento</h3>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="bg-white/5 p-4 rounded-lg border border-white/10">
-            <p className="text-sm text-white/60">Direto ao Cliente</p>
-            <p className="text-2xl font-bold text-white">{formatCurrency(budgetData.totals.direto / 100)}</p>
-          </div>
-          <div className="bg-white/5 p-4 rounded-lg border border-white/10">
-            <p className="text-sm text-white/60">The Force (Bi Tributado)</p>
-            <p className="text-2xl font-bold text-white">{formatCurrency(budgetData.totals.biTributado / 100)}</p>
-          </div>
-          <div className="bg-white/5 p-4 rounded-lg border border-white/10">
-            <p className="text-sm text-white/60">Equipe</p>
-            <p className="text-2xl font-bold text-white">{formatCurrency(budgetData.totals.equipe / 100)}</p>
-          </div>
-          <div className="bg-white/20 text-white p-4 rounded-lg border border-white/30">
-            <p className="text-sm">Total Geral</p>
-            <p className="text-2xl font-bold">{formatCurrency(budgetData.totals.geral / 100)}</p>
-          </div>
-        </div>
+      <div className="mt-8 p-6 bg-white/5 rounded-lg border border-white/10">
+        <h3 className="text-lg font-bold text-white mb-4">Observações Importantes</h3>
+        <ul className="space-y-2 text-sm text-white/80">
+          <li>• Valores baseados em 40 dias úteis de operação na Estação Sé do Metrô</li>
+          <li>• Operação diária de 6 horas (horário de pico)</li>
+          <li>• Equipe de 11 profissionais dedicados</li>
+          <li>• Todos os valores incluem impostos e encargos aplicáveis</li>
+          <li>• Proposta válida por 30 dias a partir da data de apresentação</li>
+        </ul>
       </div>
     </div>
   )

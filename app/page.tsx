@@ -62,7 +62,7 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [loaded, setLoaded] = useState(false)
   const [showVideo, setShowVideo] = useState(false)
-  const sections = ["intro", "manifesto", "about", "enhanced", "tables", "deliverables", "pricing", "budget", "terms"]
+  const sections = ["intro", "manifesto", "about", "enhanced", "tables", "deliverables", "budget", "pricing", "terms"]
   const containerRef = useRef<HTMLDivElement>(null)
   const introRef = useRef<HTMLDivElement>(null)
   const manifestoRef = useRef<HTMLDivElement>(null)
@@ -613,6 +613,39 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Budget Section */}
+        <section
+          id="budget"
+          ref={budgetRef}
+          className="flex items-center relative py-24 solid-bg-section"
+          data-section
+        >
+          <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 bg-black"></div>
+          </div>
+
+          <div className="container mx-auto px-6 sm:px-8 md:px-6 relative z-10">
+            <div className="mb-12">
+              <div className="flex items-center gap-3 mb-4">
+                <Icon type="pricing" className="text-white" />
+                <div className="caption text-white/60 glitch-text">INVESTIMENTO</div>
+              </div>
+              <div className="display-medium font-sans mb-6">
+                <AdvancedTextAnimation tag="h2" type="word" letterSpacing="-0.03em">
+                  Planilha de Custos Detalhada
+                </AdvancedTextAnimation>
+              </div>
+              <div className="body-large text-white/80 font-sans text-pretty max-w-3xl">
+                <AdvancedTextAnimation tag="p" type="slide" direction="up">
+                  Transparência total nos investimentos necessários para a ativação da Betano na Estação Sé
+                </AdvancedTextAnimation>
+              </div>
+            </div>
+
+            <BudgetTable />
+          </div>
+        </section>
+
         {/* Pricing Section */}
         <section
           id="pricing"
@@ -758,43 +791,6 @@ export default function Home() {
                     </button>
                   </MagneticElement>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Budget Section */}
-        <section
-          id="budget"
-          ref={budgetRef}
-          className="flex items-center relative py-24 solid-bg-section"
-          data-section
-        >
-          <div className="absolute inset-0 z-0">
-            <div className="absolute inset-0 bg-black"></div>
-          </div>
-
-          <div className="container mx-auto px-6 sm:px-8 md:px-6 relative z-10">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
-              <div className="md:col-span-4 section-title-2025-modern">
-                <div className="flex items-center gap-3 mb-4">
-                  <Icon type="pricing" className="text-white" />
-                  <div className="caption text-white/60 glitch-text">ORÇAMENTO DETALHADO</div>
-                </div>
-                <div className="display-medium font-sans mb-6">
-                  <AdvancedTextAnimation tag="h2" type="word" letterSpacing="-0.03em">
-                    Planilha de Custos
-                  </AdvancedTextAnimation>
-                </div>
-                <div className="body-large text-white/80 font-sans text-pretty">
-                  <AdvancedTextAnimation tag="p" type="slide" direction="up">
-                    Detalhamento completo dos investimentos necessários para a ativação, organizados por categoria e com total transparência nos valores.
-                  </AdvancedTextAnimation>
-                </div>
-              </div>
-
-              <div className="md:col-span-8 section-content">
-                <BudgetTable />
               </div>
             </div>
           </div>
