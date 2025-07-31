@@ -30,7 +30,7 @@ import { useLanguage } from "@/contexts/language-context"
 import { InteractiveLogoHero } from "@/components/interactive-logo-hero"
 import { BetanoTables } from "@/components/betano-tables"
 import { EnhancedProposal } from "@/components/enhanced-proposal"
-import { BudgetTable } from "@/components - Copy/budget-table"
+import { BudgetTable } from "@/components/budget-table"
 
 
 
