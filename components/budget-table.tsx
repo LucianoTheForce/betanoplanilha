@@ -1,13 +1,95 @@
 "use client"
 
 import React, { useState, useEffect } from 'react'
-import { budgetData } from '@/lib/budget-data'
-import { ChevronDown, ChevronRight, Edit3, Eye, Save } from 'lucide-react'
+import { budgetData as defaultBudgetData } from '@/lib/budget-data'
+import { ChevronDown, ChevronRight, Edit3, Eye, Save, RefreshCw, AlertCircle } from 'lucide-react'
 
 export function BudgetTable() {
   const [editMode, setEditMode] = useState(true) // Começa em modo de edição
   const [expandedItems, setExpandedItems] = useState<string[]>([])
-  const [editableData, setEditableData] = useState(budgetData)
+  const [editableData, setEditableData] = useState(defaultBudgetData)
+  const [saving, setSaving] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [saveStatus, setSaveStatus] = useState<'idle' | 'success' | 'error'>('idle')
+
+  // Carregar dados ao montar o componente
+  useEffect(() => {
+    loadBudgetData()
+  }, [])
+
+  const loadBudgetData = async () => {
+    try {
+      setLoading(true)
+      const response = await fetch('/api/budget')
+      if (response.ok) {
+        const data = await response.json()
+        setEditableData(data)
+      } else {
+        console.error('Erro ao carregar dados')
+        setEditableData(defaultBudgetData)
+      }
+    } catch (error) {
+      console.error('Erro ao carregar dados:', error)
+      setEditableData(defaultBudgetData)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const saveBudgetData = async () => {
+    try {
+      setSaving(true)
+      setSaveStatus('idle')
+      
+      const response = await fetch('/api/budget', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(editableData)
+      })
+
+      if (response.ok) {
+        setSaveStatus('success')
+        setTimeout(() => setSaveStatus('idle'), 3000)
+      } else {
+        setSaveStatus('error')
+        setTimeout(() => setSaveStatus('idle'), 5000)
+      }
+    } catch (error) {
+      console.error('Erro ao salvar dados:', error)
+      setSaveStatus('error')
+      setTimeout(() => setSaveStatus('idle'), 5000)
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  const resetToOriginal = async () => {
+    if (confirm('Tem certeza que deseja resetar todos os dados para os valores originais? Esta ação não pode ser desfeita.')) {
+      try {
+        setSaving(true)
+        const response = await fetch('/api/budget', {
+          method: 'PUT'
+        })
+
+        if (response.ok) {
+          await loadBudgetData()
+          setSaveStatus('success')
+          setTimeout(() => setSaveStatus('idle'), 3000)
+        } else {
+          setSaveStatus('error')
+          setTimeout(() => setSaveStatus('idle'), 5000)
+        }
+      } catch (error) {
+        console.error('Erro ao resetar dados:', error)
+        setSaveStatus('error')
+        setTimeout(() => setSaveStatus('idle'), 5000)
+      } finally {
+        setSaving(false)
+      }
+    }
+  }
 
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('pt-BR', {
@@ -72,17 +154,36 @@ export function BudgetTable() {
 
   const totals = recalculateTotals()
 
-  const saveToLocalStorage = () => {
-    localStorage.setItem('budgetData', JSON.stringify(editableData))
-    alert('Dados salvos localmente!')
+  if (loading) {
+    return (
+      <div className="w-full flex justify-center items-center py-12">
+        <div className="text-white flex items-center gap-2">
+          <RefreshCw className="w-5 h-5 animate-spin" />
+          Carregando dados do orçamento...
+        </div>
+      </div>
+    )
   }
 
   return (
     <div className="w-full">
       <div className="flex justify-between items-center mb-6">
-        <h3 className="text-xl font-bold text-white">
-          {editMode ? 'Modo de Edição' : 'Modo de Visualização'}
-        </h3>
+        <div className="flex items-center gap-4">
+          <h3 className="text-xl font-bold text-white">
+            {editMode ? 'Modo de Edição' : 'Modo de Visualização'}
+          </h3>
+          {saveStatus === 'success' && (
+            <div className="text-green-400 text-sm flex items-center gap-1">
+              ✓ Dados salvos com sucesso!
+            </div>
+          )}
+          {saveStatus === 'error' && (
+            <div className="text-red-400 text-sm flex items-center gap-1">
+              <AlertCircle className="w-4 h-4" />
+              Erro ao salvar dados
+            </div>
+          )}
+        </div>
         <div className="flex gap-2">
           <button
             onClick={() => setEditMode(!editMode)}
@@ -92,13 +193,24 @@ export function BudgetTable() {
             {editMode ? 'Visualizar' : 'Editar'}
           </button>
           {editMode && (
-            <button
-              onClick={saveToLocalStorage}
-              className="px-4 py-2 bg-green-500/20 hover:bg-green-500/30 rounded-lg text-green-400 text-sm flex items-center gap-2 transition-colors"
-            >
-              <Save className="w-4 h-4" />
-              Salvar
-            </button>
+            <>
+              <button
+                onClick={saveBudgetData}
+                disabled={saving}
+                className="px-4 py-2 bg-green-500/20 hover:bg-green-500/30 rounded-lg text-green-400 text-sm flex items-center gap-2 transition-colors disabled:opacity-50"
+              >
+                {saving ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
+                {saving ? 'Salvando...' : 'Salvar'}
+              </button>
+              <button
+                onClick={resetToOriginal}
+                disabled={saving}
+                className="px-4 py-2 bg-red-500/20 hover:bg-red-500/30 rounded-lg text-red-400 text-sm flex items-center gap-2 transition-colors disabled:opacity-50"
+              >
+                <RefreshCw className="w-4 h-4" />
+                Reset
+              </button>
+            </>
           )}
         </div>
       </div>

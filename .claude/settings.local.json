@@ -20,7 +20,8 @@
       "Bash(npm run build:*)",
       "Bash(npm run lint)",
       "Bash(grep:*)",
-      "Bash(gh repo create:*)"
+      "Bash(gh repo create:*)",
+      "Bash(mkdir:*)"
     ],
     "deny": []
   }
