@@ -130,25 +130,37 @@ export function BudgetTable() {
     }))
   }
 
+  const updateCategory = (categoryId: string, field: string, value: any) => {
+    setEditableData(prevData => ({
+      ...prevData,
+      categories: prevData.categories.map(category => {
+        if (category.id === categoryId) {
+          return { ...category, [field]: value }
+        }
+        return category
+      })
+    }))
+  }
+
   const recalculateTotals = () => {
-    let direto = 0
-    let biTributado = 0
+    let principal = 0
     let equipe = 0
 
     editableData.categories.forEach(category => {
       category.items.forEach(item => {
         const total = calculateItemTotal(item)
-        if (item.billingType === 'Direto ao Cliente') direto += total
-        else if (item.billingType === 'The Force (Bi Tributado)') biTributado += total
-        else if (item.billingType === 'Equipe') equipe += total
+        if (item.billingType === 'Direto ao Cliente' || item.billingType === 'Faturamento Direto') {
+          principal += total
+        } else if (item.billingType === 'Equipe') {
+          equipe += total
+        }
       })
     })
 
     return {
-      direto: direto * 100,
-      biTributado: biTributado * 100,
+      principal: principal * 100,
       equipe: equipe * 100,
-      geral: (direto + biTributado + equipe) * 100
+      geral: (principal + equipe) * 100
     }
   }
 
@@ -237,8 +249,27 @@ export function BudgetTable() {
                   <tr className="bg-white/5">
                     <td colSpan={9} className="py-3 px-4">
                       <div className="flex items-center gap-2">
-                        <span className="text-lg font-bold text-white">{category.name}</span>
-                        <span className="text-sm text-white/60">({category.description})</span>
+                        {editMode ? (
+                          <input
+                            type="text"
+                            value={category.name}
+                            onChange={(e) => updateCategory(category.id, 'name', e.target.value)}
+                            className="text-lg font-bold bg-white/10 border border-white/20 rounded px-2 py-1 text-white"
+                          />
+                        ) : (
+                          <span className="text-lg font-bold text-white">{category.name}</span>
+                        )}
+                        {editMode ? (
+                          <input
+                            type="text"
+                            value={category.description}
+                            onChange={(e) => updateCategory(category.id, 'description', e.target.value)}
+                            className="text-sm bg-white/10 border border-white/20 rounded px-2 py-1 text-white/90"
+                            placeholder="Descrição da categoria"
+                          />
+                        ) : (
+                          <span className="text-sm text-white/60">({category.description})</span>
+                        )}
                       </div>
                     </td>
                   </tr>
@@ -325,8 +356,7 @@ export function BudgetTable() {
                         <td className="py-3 px-4 text-sm">
                           <span className={`
                             px-2 py-1 rounded text-xs
-                            ${item.billingType === 'Direto ao Cliente' ? 'bg-green-500/20 text-green-400' : ''}
-                            ${item.billingType === 'The Force (Bi Tributado)' ? 'bg-blue-500/20 text-blue-400' : ''}
+                            ${item.billingType === 'Direto ao Cliente' || item.billingType === 'Faturamento Direto' ? 'bg-blue-500/20 text-blue-400' : ''}
                             ${item.billingType === 'Equipe' ? 'bg-purple-500/20 text-purple-400' : ''}
                           `}>
                             {item.billingType}
@@ -388,15 +418,7 @@ export function BudgetTable() {
             <tfoot>
               <tr className="border-t-2 border-white/20">
                 <td colSpan={9} className="py-6">
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <div className="bg-green-500/10 p-4 rounded-lg border border-green-500/20">
-                      <p className="text-sm text-green-400 mb-1">Direto ao Cliente</p>
-                      <p className="text-2xl font-bold text-white">{formatCurrency(totals.direto / 100)}</p>
-                    </div>
-                    <div className="bg-blue-500/10 p-4 rounded-lg border border-blue-500/20">
-                      <p className="text-sm text-blue-400 mb-1">The Force (Bi Tributado)</p>
-                      <p className="text-2xl font-bold text-white">{formatCurrency(totals.biTributado / 100)}</p>
-                    </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-lg mx-auto">
                     <div className="bg-purple-500/10 p-4 rounded-lg border border-purple-500/20">
                       <p className="text-sm text-purple-400 mb-1">Equipe</p>
                       <p className="text-2xl font-bold text-white">{formatCurrency(totals.equipe / 100)}</p>
