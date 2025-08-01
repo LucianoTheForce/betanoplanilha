@@ -36,7 +36,7 @@ export function SplitText({ children, className = "" }: SplitTextProps) {
       y: 0,
       stagger: 0.03,
       delay: 0.5,
-      ease: "power3.out",
+      ease: "easeOut",
       duration: 0.8,
     })
 

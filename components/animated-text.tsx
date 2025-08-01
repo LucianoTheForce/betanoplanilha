@@ -26,7 +26,7 @@ export function AnimatedText({
   type = "chars",
   threshold = 0.5,
 }: AnimatedTextProps) {
-  const containerRef = useRef<HTMLElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
   const hasAnimated = useRef(false)
   const [content, setContent] = useState<React.ReactNode>(children)
 
@@ -73,7 +73,7 @@ export function AnimatedText({
           opacity: 1,
           duration,
           delay,
-          ease: "power3.out",
+          ease: "easeOut",
         },
       )
       return
@@ -145,7 +145,7 @@ export function AnimatedText({
         stagger: staggerChildren,
         duration: duration * 0.7,
         delay,
-        ease: "power3.out",
+        ease: "easeOut",
       })
     }
   }

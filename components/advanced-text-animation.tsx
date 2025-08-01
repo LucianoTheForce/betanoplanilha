@@ -28,12 +28,12 @@ export function AdvancedTextAnimation({
   threshold = 0.2,
   fontWeight = "normal",
   staggerChildren = 0.03,
-  ease = "power3.out",
+  ease = "easeOut",
   direction = "up",
   letterSpacing = "normal",
 }: AdvancedTextAnimationProps) {
   const containerRef = useRef<HTMLDivElement>(null)
-  const textRef = useRef<HTMLElement>(null)
+  const textRef = useRef<HTMLDivElement>(null)
   const hasAnimated = useRef(false)
   const [isVisible, setIsVisible] = useState(false)
   const [isBrowser, setIsBrowser] = useState(false)

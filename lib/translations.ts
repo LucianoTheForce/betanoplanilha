@@ -401,7 +401,7 @@ export const translations = {
       "Painel JCDecaux (1h/dia): roleta gigante, vídeo pré-renderizado de 30s - clímax visual visto de toda a estação",
       "Painel LED do estande (6h): espelha o resultado e mantém o show girando o dia todo",
       "Cenografia imersiva: luzes dinâmicas, totem de cadastro ultrarrápido, balcão de prêmios iluminado",
-      "Mensagem-âncora: 'Participe grátis, gire a Roleta Betano e ganhe prêmios na hora!'",
+      
       "Conversão de fluxo monstruoso em leads qualificados prontos para plataforma Betano",
       "Prêmios premium e energia de Las Vegas atualizada à era digital",
       "Conformidade completa LGPD e sistema de verificação de idade 18+",
