@@ -1,7 +1,7 @@
 export const budgetData = {
   "title": "PROPOSTA COMERCIAL: THE FORCE & BETANO",
-  "description": "JOB: Ativação Betano - LOCAL: Estação Sé - SP - DATA: Período de 7 dias (datas a definir) - CONTATO: Patricia",
-  "observacoes": "Montagem em 1 dia; Funcionamento por 7 dias; Desmontagem em 1 dia.",
+  "description": "JOB: Ativação Betano - LOCAL: Estação Sé - SP - CONTATO: Patricia - PERÍODO: Período de 7 dias (datas a definir)",
+  "observacoes": "Montagem em 1 dia; Funcionamento por 7 dias; Desmontagem em 1 dia",
   "dataApresentacao": "31/7/2025",
   "categories": [
     {
@@ -12,13 +12,13 @@ export const budgetData = {
         {
           "id": "1.1",
           "description": "Locação Espaço Estação Sé",
-          "detailedDescription": "Locação do espaço na Estação Sé do Metrô para instalação do estande de ativação da Betano, com alto fluxo de passageiros.",
+          "detailedDescription": "Locação do espaço na Estação Sé do Metrô para instalação do estande de ativação da Betano, com alto fluxo",
           "status": true,
           "quantity": 0,
           "days": 7,
           "frequency": 0,
           "unitPrice": 0,
-          "supplier": "Metrô SP",
+          "supplier": "",
           "invoice": "",
           "billingType": "Faturamento Direto",
           "notes": "Subtotal Faturamento The Force"
@@ -33,13 +33,13 @@ export const budgetData = {
         {
           "id": "2.1",
           "description": "Distribuição Elétrica",
-          "detailedDescription": "Infraestrutura elétrica para distribuição de energia durante a ativação, incluindo nobreaks e cabeamento certificado.",
+          "detailedDescription": "Infraestrutura elétrica para distribuição de energia durante a ativação, incluindo nobreaks e cabeamento",
           "status": true,
           "quantity": 5,
           "days": 7,
           "frequency": 1,
           "unitPrice": 0,
-          "supplier": "Elétrica Técnica",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         },
@@ -65,7 +65,7 @@ export const budgetData = {
           "days": 7,
           "frequency": 1,
           "unitPrice": 0,
-          "supplier": "Organização",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         },
@@ -78,7 +78,7 @@ export const budgetData = {
           "days": 7,
           "frequency": 1,
           "unitPrice": 0,
-          "supplier": "Catering",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         },
@@ -91,7 +91,7 @@ export const budgetData = {
           "days": 7,
           "frequency": 7,
           "unitPrice": 0,
-          "supplier": "Fornecedor",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         },
@@ -104,14 +104,14 @@ export const budgetData = {
           "days": 7,
           "frequency": 1,
           "unitPrice": 0,
-          "supplier": "Diversos",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         },
         {
           "id": "2.7",
-          "description": "",
-          "detailedDescription": "",
+          "description": "Item não especificado",
+          "detailedDescription": "Não informado no documento.",
           "status": true,
           "quantity": 1,
           "days": 5,
@@ -130,7 +130,7 @@ export const budgetData = {
           "days": 2,
           "frequency": 1,
           "unitPrice": 15000,
-          "supplier": "Montagem Pro",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         },
@@ -143,20 +143,20 @@ export const budgetData = {
           "days": 1,
           "frequency": 1,
           "unitPrice": 18000,
-          "supplier": "Logística",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         },
         {
           "id": "2.10",
-          "description": "Testes e",
+          "description": "Testes",
           "detailedDescription": "Testes completos de todos os sistemas, equipamentos e simulações de operação.",
           "status": true,
           "quantity": 1,
           "days": 2,
           "frequency": 1,
           "unitPrice": 12000,
-          "supplier": "Técnico",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         }
@@ -170,13 +170,13 @@ export const budgetData = {
         {
           "id": "3.2",
           "description": "Estande Promocional",
-          "detailedDescription": "Estrutura cenográfica com design betano que transforma o espaço, incluindo áreas de cadastro e prêmios.",
+          "detailedDescription": "Estrutura cenográfica com design Betano que transforma o espaço, incluindo áreas de cadastro e prêmios.",
           "status": true,
           "quantity": 1,
           "days": 7,
           "frequency": 1,
           "unitPrice": 0,
-          "supplier": "Cenografia Pro",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         },
@@ -189,14 +189,14 @@ export const budgetData = {
           "days": 7,
           "frequency": 6,
           "unitPrice": 0,
-          "supplier": "LED Solutions",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         },
         {
           "id": "3.4",
           "description": "Balcão com chave",
-          "detailedDescription": "",
+          "detailedDescription": "Balcão com chave",
           "status": true,
           "quantity": 1,
           "days": 7,
@@ -215,7 +215,7 @@ export const budgetData = {
           "days": 7,
           "frequency": 1,
           "unitPrice": 0,
-          "supplier": "Elétrica",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         }
@@ -235,7 +235,7 @@ export const budgetData = {
           "days": 7,
           "frequency": 1,
           "unitPrice": 15000,
-          "supplier": "Tech Display",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         },
@@ -248,7 +248,7 @@ export const budgetData = {
           "days": 7,
           "frequency": 1,
           "unitPrice": 45000,
-          "supplier": "Dev Solutions",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         },
@@ -261,20 +261,20 @@ export const budgetData = {
           "days": 7,
           "frequency": 1,
           "unitPrice": 3500,
-          "supplier": "Print Tech",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         },
         {
           "id": "4.4",
           "description": "Conectividade e Rede",
-          "detailedDescription": "Infraestrutura de rede para os totens, com roteadores, switches",
+          "detailedDescription": "Infraestrutura de rede para os totens, com roteadores, switches.",
           "status": true,
           "quantity": 1,
           "days": 7,
           "frequency": 1,
           "unitPrice": 8000,
-          "supplier": "Network Pro",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         },
@@ -287,7 +287,7 @@ export const budgetData = {
           "days": 7,
           "frequency": 6,
           "unitPrice": 150,
-          "supplier": "Suporte Tech",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         },
@@ -300,7 +300,7 @@ export const budgetData = {
           "days": 7,
           "frequency": 1,
           "unitPrice": 800,
-          "supplier": "Tech Monitor",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         },
@@ -313,7 +313,7 @@ export const budgetData = {
           "days": 7,
           "frequency": 1,
           "unitPrice": 1500,
-          "supplier": "Tech Rental",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         },
@@ -326,7 +326,7 @@ export const budgetData = {
           "days": 1,
           "frequency": 1,
           "unitPrice": 200,
-          "supplier": "Analytics",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         },
@@ -339,7 +339,7 @@ export const budgetData = {
           "days": 7,
           "frequency": 1,
           "unitPrice": 8000,
-          "supplier": "LED Tech",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         },
@@ -352,20 +352,20 @@ export const budgetData = {
           "days": 7,
           "frequency": 1,
           "unitPrice": 2000,
-          "supplier": "Display Tech",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         },
         {
           "id": "4.11",
           "description": "Tablets para Promotores",
-          "detailedDescription": "Tablets com camera, suporte e carregador",
+          "detailedDescription": "Tablets com câmera, suporte e carregador.",
           "status": true,
           "quantity": 8,
           "days": 7,
           "frequency": 1,
           "unitPrice": 0,
-          "supplier": "Tech Rental",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         },
@@ -378,7 +378,7 @@ export const budgetData = {
           "days": 1,
           "frequency": 1,
           "unitPrice": 3520,
-          "supplier": "Comunicação",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         }
@@ -398,7 +398,7 @@ export const budgetData = {
           "days": 1,
           "frequency": 1,
           "unitPrice": 450,
-          "supplier": "Motion Studio",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         },
@@ -411,20 +411,20 @@ export const budgetData = {
           "days": 7,
           "frequency": 1,
           "unitPrice": 25000,
-          "supplier": "Media Tech",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         },
         {
           "id": "5.3",
           "description": "Conteúdo Promocional",
-          "detailedDescription": "Vídeos promocionais para o período de cadastro e cronômetro regressivo. 4:30m",
+          "detailedDescription": "Vídeos promocionais para o período de cadastro e cronômetro regressivo (4:30m).",
           "status": true,
           "quantity": 1,
           "days": 1,
           "frequency": 1,
           "unitPrice": 35000,
-          "supplier": "Motion Studio",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         },
@@ -437,7 +437,7 @@ export const budgetData = {
           "days": 7,
           "frequency": 6,
           "unitPrice": 1200,
-          "supplier": "Audio Pro",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         }
@@ -457,7 +457,7 @@ export const budgetData = {
           "days": 1,
           "frequency": 1,
           "unitPrice": 45,
-          "supplier": "Brindes Tech",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         },
@@ -470,7 +470,7 @@ export const budgetData = {
           "days": 1,
           "frequency": 1,
           "unitPrice": 12,
-          "supplier": "Brindes",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         },
@@ -483,7 +483,7 @@ export const budgetData = {
           "days": 1,
           "frequency": 1,
           "unitPrice": 8,
-          "supplier": "Brindes",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         },
@@ -496,7 +496,7 @@ export const budgetData = {
           "days": 1,
           "frequency": 1,
           "unitPrice": 5,
-          "supplier": "Brindes",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         },
@@ -509,7 +509,7 @@ export const budgetData = {
           "days": 7,
           "frequency": 1,
           "unitPrice": 8500,
-          "supplier": "Móveis",
+          "supplier": "",
           "invoice": "",
           "billingType": "Direto ao Cliente"
         }
@@ -529,7 +529,7 @@ export const budgetData = {
           "days": 7,
           "frequency": 6,
           "unitPrice": 120,
-          "supplier": "RH Eventos",
+          "supplier": "",
           "invoice": "",
           "billingType": "Equipe"
         },
@@ -542,7 +542,7 @@ export const budgetData = {
           "days": 7,
           "frequency": 6,
           "unitPrice": 80,
-          "supplier": "RH Eventos",
+          "supplier": "",
           "invoice": "",
           "billingType": "Equipe"
         },
@@ -555,7 +555,7 @@ export const budgetData = {
           "days": 7,
           "frequency": 6,
           "unitPrice": 70,
-          "supplier": "RH Eventos",
+          "supplier": "",
           "invoice": "",
           "billingType": "Equipe"
         },
@@ -568,7 +568,7 @@ export const budgetData = {
           "days": 7,
           "frequency": 6,
           "unitPrice": 65,
-          "supplier": "RH Eventos",
+          "supplier": "",
           "invoice": "",
           "billingType": "Equipe"
         },
@@ -581,7 +581,7 @@ export const budgetData = {
           "days": 7,
           "frequency": 6,
           "unitPrice": 45,
-          "supplier": "RH Eventos",
+          "supplier": "",
           "invoice": "",
           "billingType": "Equipe"
         },
@@ -594,20 +594,20 @@ export const budgetData = {
           "days": 7,
           "frequency": 6,
           "unitPrice": 90,
-          "supplier": "Segurança",
+          "supplier": "",
           "invoice": "",
           "billingType": "Equipe"
         },
         {
           "id": "7.7",
-          "description": "",
+          "description": "Tablets para Promotores (App)",
           "detailedDescription": "Tablets com aplicativo customizado para uso dos promotores.",
           "status": true,
           "quantity": 2,
           "days": 7,
           "frequency": 1,
           "unitPrice": 1200,
-          "supplier": "Tech Rental",
+          "supplier": "",
           "invoice": "",
           "billingType": "Equipe"
         },
@@ -620,7 +620,7 @@ export const budgetData = {
           "days": 7,
           "frequency": 1,
           "unitPrice": 250,
-          "supplier": "RH Eventos",
+          "supplier": "",
           "invoice": "",
           "billingType": "Equipe"
         },
@@ -633,7 +633,7 @@ export const budgetData = {
           "days": 1,
           "frequency": 1,
           "unitPrice": 10038.17,
-          "supplier": "Limpeza Pro",
+          "supplier": "",
           "invoice": "",
           "billingType": "Equipe"
         },
@@ -646,7 +646,7 @@ export const budgetData = {
           "days": 1,
           "frequency": 1,
           "unitPrice": 38556.69,
-          "supplier": "Segurança Pro",
+          "supplier": "",
           "invoice": "",
           "billingType": "Equipe"
         },
@@ -659,7 +659,7 @@ export const budgetData = {
           "days": 1,
           "frequency": 1,
           "unitPrice": 361,
-          "supplier": "Medical",
+          "supplier": "",
           "invoice": "",
           "billingType": "Equipe"
         },
@@ -672,7 +672,7 @@ export const budgetData = {
           "days": 1,
           "frequency": 1,
           "unitPrice": 133,
-          "supplier": "Segurança",
+          "supplier": "",
           "invoice": "",
           "billingType": "Equipe"
         },
@@ -685,7 +685,7 @@ export const budgetData = {
           "days": 1,
           "frequency": 1,
           "unitPrice": 3360,
-          "supplier": "Segurança",
+          "supplier": "",
           "invoice": "",
           "billingType": "Equipe"
         },
@@ -698,7 +698,7 @@ export const budgetData = {
           "days": 1,
           "frequency": 1,
           "unitPrice": 22000,
-          "supplier": "Tech Support",
+          "supplier": "",
           "invoice": "",
           "billingType": "Equipe"
         },
@@ -711,7 +711,7 @@ export const budgetData = {
           "days": 1,
           "frequency": 1,
           "unitPrice": 26400,
-          "supplier": "RH Eventos",
+          "supplier": "",
           "invoice": "",
           "billingType": "Equipe"
         }
@@ -731,7 +731,7 @@ export const budgetData = {
           "days": 7,
           "frequency": 1,
           "unitPrice": 227.27,
-          "supplier": "Seguradora",
+          "supplier": "",
           "invoice": "",
           "billingType": "Faturamento Direto"
         },
@@ -744,7 +744,7 @@ export const budgetData = {
           "days": 7,
           "frequency": 1,
           "unitPrice": 90.91,
-          "supplier": "Órgãos",
+          "supplier": "",
           "invoice": "",
           "billingType": "Faturamento Direto"
         }
@@ -770,10 +770,10 @@ export const budgetData = {
     "1. Os direitos autorais deste projeto pertencem a THE FORCE.CC e serão remunerados pelos honorários que constam nesta planilha.",
     "2. Todos os custos são orçados, podendo haver alterações conforme mudanças de projeto após sua aprovação.",
     "3. Eventuais licenças, autorizações e taxas junto à Prefeitura serão negociadas após aprovação deste projeto.",
-    "4. Os custos de criação e editoração incluem até 2 (duas) refações. A partir da 3ª (terceira) refação, se esta ocorrer por responsabilidade ou vontade do cliente, será cobrada taxa de 50% dos custos referentes à criação e/ou editoração dos lay-outs refeitos.",
+    "4. Os custos de criação e editoração incluem até 2 (duas) refações. A partir da 3ª refação, se esta ocorrer por responsabilidade ou vontade do cliente, será cobrada taxa de 50% dos custos referentes à criação e/ou editoração dos lay-outs refeitos.",
     "5. No caso de mudança de briefing, será cobrado 100% do custo de criação.",
     "6. A assinatura desta planilha implica na contratação dos serviços nela descritos.",
     "7. Este documento possui o valor de título jurídico extrajudicial.",
-    "8. Os valores desta planilha contemplam os impostos vigentes na data de sua emissão. Caso ocorra modificações na legislação tributária que acarrete um aumento dessa carga tributária até a data de realização do evento, será emitido faturamento complementar para cobrir eventuais diferenças de custos causado por majorações de impostos."
+    "8. Os valores desta planilha contemplam os impostos vigentes na data de sua emissão. Caso ocorra modificações na legislação tributária que acarrete um aumento dessa carga tributária até a data de realização do evento, será emitido faturamento complementar para cobrir eventuais diferenças de custos causados por majorações de impostos."
   ]
 }
